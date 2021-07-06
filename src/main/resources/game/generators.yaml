@@ -1,0 +1,103 @@
+firstname: !!map
+  male: !!map
+    - Chris
+    - Shinji
+    - Glover
+    - Buck
+    - Peable
+    - Rosco
+    - Juan
+    - Azif
+    - Mello
+    - Guy
+    - Diego
+    - Ezio
+  female: !!map
+    - Marisa
+    - Sacha
+    - Widow
+    - Andrea
+    - Hanna
+    - Rosemary
+    - Hizuki
+    - Roberta
+    - Valentina
+    - Violet
+    - Abby
+  fluid: !!map
+    - Star
+    - Lightining
+    - NoFx
+    - Moshi Moshi
+    - Steam
+    - Razor
+    - Cello
+    - Creeper
+    - Gangsta
+    - Mole
+    - Guacamole
+lastname: !!map
+  ethnic: !!map
+    - Rosso
+    - Han
+    - Ishikawa
+    - O'Reilly
+    - Romano
+    - Vonnegut
+    - Laurent
+    - Rivera
+    - Glenn
+    - Robertson
+    - Holden
+    - Montoya
+  fantasy: !!map
+    - Veega
+    - Bloom
+    - Firecatch
+    - Gap
+    - Unglorious
+    - Rainbow
+    - Sundiver
+    - Scuba
+    - Plisken
+    - Geo
+    - Satellite
+university:
+  real:
+    - MIT
+    - CalTech
+    - Stanford
+    - Imperial College
+    - ETH Zurich
+    - Cambridge
+    - University of Texas
+    - Carnegie Mellon
+    - Tokyo University
+    - Politecnico di Torino
+    - Dubai IT College
+    - NASA Jet Propulsion Lab
+  fake:
+    - Tesladyne Academy
+    - Xavier Institute
+    - Umbrella Academy
+    - WW2 Secret Weapons Studies
+    - Area 51 Training Labs
+    - Aperture R&D
+    - Stargate Consortium
+    - Avasarala's Inner Planets Coalition
+facility:
+  prefix:
+    - Microtechnology
+    - Supercomputer
+    - Blue Mining
+    - Bigdata
+    - Quantistic Microchip
+    - Government security
+    - Precog Intelligence
+    - APE Free
+  suffix:
+    - Labs
+    - Server Factory
+    - Complex
+    - Compound
+    - Agency
