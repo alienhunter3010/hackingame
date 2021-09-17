@@ -1,0 +1,40 @@
+0:
+  box:
+    origin: [5, -13]
+    size: [60, 10]
+    fg: WHITEHL
+    bg: BLACK
+  arrow: SO
+  text:
+    1: Since you were kid, you have a good mood for Computers
+    2: Now that you are at College you are addicted
+    3: It's time to join the hacker community
+    5: Everything starts here
+    6: Real hackers use the terminal
+    7: Now write `tutorial 1` and press Enter
+1:
+  box:
+    origin: [53, 10]
+    size: [52, 7]
+    fg: WHITEHL
+    bg: BLACK
+  arrow: NO
+  text:
+    1: This is you
+    2: Later you can learn how to assume a new identity
+    3: but actually you can't change this
+    5: Now write `tutorial 2`
+2:
+  box:
+    origin: [3, 8]
+    size: [54, 9]
+    fg: WHITEHL
+    bg: BLACK
+  arrow: NO
+  text:
+    1: These are your skills
+    2: improve them by learning stuff
+    3: "For example:"
+    4: you can learn development basics writing `learn 1`
+    5: you need to study, and study needs time
+    7: Now write `tutor 3`

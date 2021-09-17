@@ -7,11 +7,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
+import java.util.Optional;
 
 @Getter
 public class Gauge extends LineWriter {
     private String title = "";
+    private Optional<Label> label = Optional.empty();
+
     private final Score score;
+
     @Setter
     private Printable colors = Escape.format(Colors.BLACK.bg(), Colors.GREEN.fg());
 
@@ -37,6 +41,11 @@ public class Gauge extends LineWriter {
         return this;
     }
 
+    public Gauge withLabel(Label label) {
+        this.label = Optional.of(label);
+        return this;
+    }
+
     public Gauge withColors(Colors foreground, Colors background) {
         colors = Escape.format(foreground.fg(), background.bg());
         return this;
@@ -44,9 +53,15 @@ public class Gauge extends LineWriter {
 
     @Override
     public Draw draw() {
-        Integer bar = getLine().getWidth() - (getLine().getWidth() > 20 ? 4 : 0);
-        Integer completed = (int)( bar  * getScore().percentage());
-        Draw.Builder builder = new Draw.Builder().move(getLine().getX(), getLine().getY()).msg(colors);
+        int bar = getLine().getWidth() - (getLine().getWidth() > 20 ? 4 : 0);
+        int completed = (int)( bar  * getScore().percentage());
+        Draw.Builder builder = new Draw.Builder();
+
+        label.ifPresent(l -> {
+            builder.msg(l.draw().output());
+        });
+
+        builder.move(getLine().getOrigin()).msg(colors);
         if (completed > 0) {
             String highlight = " " + title.substring(0, Math.min(completed - 1, title.length()));
             if (highlight.length() < completed) {

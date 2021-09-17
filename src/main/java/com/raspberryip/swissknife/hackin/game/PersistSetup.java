@@ -14,7 +14,7 @@ import java.io.IOException;
 
 @Component
 public class PersistSetup {
-    private String pathSetup = System.getProperty("user.home") + "/etc/hackin/mygame.yaml";
+    private final String pathSetup = System.getProperty("user.home") + "/etc/hackin/mygame.yaml";
 
     @Autowired
     private Log log;

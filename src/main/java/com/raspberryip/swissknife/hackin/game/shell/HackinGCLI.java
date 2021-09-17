@@ -1,10 +1,7 @@
 package com.raspberryip.swissknife.hackin.game.shell;
 
 import com.raspberryip.swissknife.hackin.game.PersistSetup;
-import com.raspberryip.swissknife.hackin.game.component.BWHat;
-import com.raspberryip.swissknife.hackin.game.component.HaCkanvas;
-import com.raspberryip.swissknife.hackin.game.component.Log;
-import com.raspberryip.swissknife.hackin.game.component.RGBHat;
+import com.raspberryip.swissknife.hackin.game.component.*;
 import com.raspberryip.swissknife.hackin.layout.pojo.Colors;
 import com.raspberryip.swissknife.hackin.layout.pojo.LineWriter;
 import com.raspberryip.swissknife.hackin.layout.pojo.Screen;
@@ -39,6 +36,9 @@ public class HackinGCLI implements CommandMarker {
 
     @Autowired
     private PersistSetup setup;
+
+    @Autowired
+    private Tutorial tutorial;
 
     @Autowired
     @Qualifier("ScreenSize")
@@ -103,41 +103,12 @@ public class HackinGCLI implements CommandMarker {
 
 
     @CliCommand(value={ "tutor", "tutorial" }, help="Learn a new Skill")
-    public String tutorial(@CliOption(key = {"", "skill"}) String what) {
+    public void tutorial(@CliOption(key = {"", "skill"}) Integer what) {
         if (what == null) {
-            what = "0";
+            what = 0;
         }
-        switch (what) {
-            case "0":
-                Tooltip welcomeTooltip = new Tooltip(new Point(5, screenSize.getY() - 13), new Point(60, 10), Colors.WHITEHL, Colors.BLACK);
-                welcomeTooltip
-                        .addLine(1, "Since you were kid, you have a good mood for Computers")
-                        .addLine(2, "Now that you are at College you are addicted")
-                        .addLine(3, "It's time to join the hacker community")
-                        .addLine(5, "Everything starts here")
-                        .addLine(6, "Real hackers use the terminal")
-                        .addLine(7, "Now write `tutorial 1` and press Enter");
-                return tooltip(welcomeTooltip);
-            case "1":
-                Tooltip youTooltip = new Tooltip(new Point(53, 10), new Point(48, 7), Colors.WHITEHL, Colors.BLACK);
-                youTooltip
-                        .addLine(1, "This is you")
-                        .addLine(2, "Later you can learn how to assume a new identity")
-                        .addLine(3, "but actually you can't change this")
-                        .addLine(7, "Now write `tutorial 2`");
-                return tooltip(youTooltip);
-            case "2":
-                Tooltip skillsTooltip = new Tooltip(new Point(3, 10), new Point(48, 7), Colors.WHITEHL, Colors.BLACK);
-                skillsTooltip
-                        .addLine(1, "These are your skills")
-                        .addLine(2, "improve them by learning stuff")
-                        .addLine(3, "For example:")
-                        .addLine(4, "you can learn development basics writing `learn 1`")
-                        .addLine(5, "you need to study, and study needs time")
-                        .addLine(7, "Now write `tutor 3`");
-                return tooltip(skillsTooltip);
-        }
-        return refresh();
+        //canvas.hideTooltips();
+        tutorial.build(what).ifPresent(t -> canvas.injectTooltip(t));
     }
 
     private String tooltip(Tooltip tooltip) {

@@ -16,19 +16,25 @@ public class WhoAmI extends Window {
     private final Bio bio;
 
     public WhoAmI(PersistSetup setup, Names names) {
-        super(new Point(52,4), new Point(50, 30), Colors.BLACK, Colors.WHITE);
+        super(new Point(1,4), new Point(50, 30), Colors.BLACK, Colors.WHITE);
         withTitle("/usr/bin/whoami");
 
         bio = setup.getBio();
 
         getCanvas().add(
-                new Pair(getScreenPoint(1, 3), 12, 40)
+                new Pair(getScreenPoint(2, 3), 15, 30)
                         .withColors(Colors.GREEN, Colors.WHITE).withText("Name", bio.getFirstName() + " " + bio.getLastName()))
             .add(
-                new Pair(getScreenPoint(1, 4), 13, 3)
+                new Pair(getScreenPoint(2, 4), 15, 3)
                         .withColors(Colors.GREEN, Colors.WHITE).withText("Declared sex", bio.getSex()))
             .add(
-                new Pair(getScreenPoint(1, 5), 12, 40)
-                        .withColors(Colors.GREEN, Colors.WHITE).withText("Training @", bio.getPhD()));
+                new Pair(getScreenPoint(2, 5), 15, 30)
+                        .withColors(Colors.GREEN, Colors.WHITE).withText("Training @", bio.getPhD()))
+            .add(
+                new Pair(getScreenPoint(2, 6), 15, 30)
+                        .withColors(Colors.GREEN, Colors.WHITE).withText("Income", String.format("$ %d", bio.getIncome())))
+            .add(
+                new Pair(getScreenPoint(2, 8), 15, 30)
+                        .withColors(Colors.GREEN, Colors.WHITE).withText("Conflict w/", bio.getEnemy()));
     }
 }

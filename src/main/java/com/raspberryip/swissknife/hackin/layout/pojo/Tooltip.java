@@ -1,9 +1,12 @@
 package com.raspberryip.swissknife.hackin.layout.pojo;
 
+import com.raspberryip.swissknife.hackin.layout.pojo.basic.Arrow;
 import com.raspberryip.swissknife.hackin.layout.pojo.basic.Point;
+import com.raspberryip.swissknife.hackin.layout.pojo.basic.Positions;
 
 public class Tooltip extends Window {
-
+    private Boolean visible = true;
+    private Positions arrowPosition = Positions.SO;
 
     public Tooltip(Point origin, Point size, Colors foreground, Colors background) {
         super(origin, size, foreground, background);
@@ -18,9 +21,23 @@ public class Tooltip extends Window {
         return this;
     }
 
+    public Tooltip isVisible(Boolean visible) {
+        this.visible = visible;
+        return this;
+    }
+
+    public Tooltip arrowOn(Positions position) {
+        arrowPosition = position;
+        return this;
+    }
+
+    @Override
+    public Draw draw() {
+        return visible ? super.draw() : new Draw();
+    }
+
     @Override
     public Draw.Builder builder() {
-        return super.builder().move(getOrigin().getX() + 2, getTarget().getY()) /* .msg("  ")
-                .move(getOrigin().getX() + 2, getTarget().getY() + 1) */ .msg(Frames.NO_ES.print() + Frames.NE_OS.print());
+        return new Arrow(this).on(arrowPosition, super.builder());
     }
 }

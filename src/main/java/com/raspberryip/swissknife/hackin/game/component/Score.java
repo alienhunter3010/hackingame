@@ -37,4 +37,8 @@ public class Score {
     public Double percentage() {
         return Double.valueOf(score) / max;
     }
+
+    public Boolean isFull() {
+        return score >= max;
+    }
 }

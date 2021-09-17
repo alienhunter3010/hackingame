@@ -7,7 +7,7 @@ import org.springframework.shell.support.util.StringUtils;
 public class Draw {
     private StringBuffer output = new StringBuffer();
 
-    private Draw() {
+    Draw() {
     }
 
     private Draw append(String s) {

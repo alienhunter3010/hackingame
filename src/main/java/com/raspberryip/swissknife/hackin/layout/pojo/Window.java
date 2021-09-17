@@ -2,6 +2,7 @@ package com.raspberryip.swissknife.hackin.layout.pojo;
 
 import com.raspberryip.swissknife.hackin.layout.pojo.basic.Point;
 import com.raspberryip.swissknife.hackin.layout.pojo.basic.Rect;
+import com.raspberryip.swissknife.hackin.layout.pojo.basic.TString;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,7 @@ public class Window extends Rect implements Drawable {
     private Boolean heavy = false;
 
     private String title;
+    private String hint;
 
     public Window(Point origin, Point size, Colors foreground, Colors background) {
         super(origin, size);
@@ -31,8 +33,17 @@ public class Window extends Rect implements Drawable {
         return this;
     }
 
+    public Window withHint(String hint) {
+        this.hint = hint;
+        return this;
+    }
+
+    protected TString defaultLayout() {
+        return Escape.format(foreground.fg(), background.bg());
+    }
+
     protected Draw.Builder builder() {
-        Draw.Builder builder = new Draw.Builder().msg(Escape.format(foreground.fg(), background.bg()));
+        Draw.Builder builder = new Draw.Builder().msg(defaultLayout());
 
         builder.move(getOrigin()).msg(Frames.ES.isHeavy(heavy)).spacer(getSize().getX() - 2, Frames.OE.isHeavy(heavy)).msg(Frames.OS.isHeavy(heavy));
         for (Integer y = (getOrigin().getY() + 1) ; y < (getTarget().getY()) ; y++) {
@@ -43,6 +54,15 @@ public class Window extends Rect implements Drawable {
         if (title != null) {
             builder.move(getOrigin().getX() + 1, getOrigin().getY()).msg(String.format(" %s ", title));
         }
+
+        if (hint != null) {
+            builder.move(getTarget().getX() - (hint.length() + 3), getTarget().getY())
+                    .msg(Escape.format(Texts.ITALIC.code()))
+                    .msg(String.format(" %s ", hint))
+                    .msg(Escape.format(Texts.RESET.code()))
+                    .msg(defaultLayout());
+        }
+
         return builder.msg(canvas.print());
     }
 

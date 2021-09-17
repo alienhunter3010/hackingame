@@ -1,4 +1,4 @@
-package com.raspberryip.swissknife.hackin.game.configuration;
+package com.raspberryip.swissknife.hackin.layout.configuration;
 
 import com.raspberryip.swissknife.hackin.layout.pojo.basic.Point;
 import org.jline.terminal.Terminal;

@@ -1,7 +1,9 @@
 package com.raspberryip.swissknife.hackin.game.shell;
 
 import com.raspberryip.swissknife.hackin.game.component.HaCkanvas;
-import com.raspberryip.swissknife.hackin.game.processor.Evolve;
+import com.raspberryip.swissknife.hackin.game.processor.Advance;
+import com.raspberryip.swissknife.hackin.layout.pojo.Colors;
+import com.raspberryip.swissknife.hackin.layout.pojo.Escape;
 import com.raspberryip.swissknife.hackin.layout.pojo.Screen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,7 +29,7 @@ public class HackinGBannerProvider extends DefaultBannerProvider {
     private HaCkanvas canvas;
 
     @Autowired
-    private Evolve evolve;
+    private Advance advance;
 
     private StringBuffer banner() {
         StringBuffer buf = new StringBuffer();
@@ -36,8 +38,8 @@ public class HackinGBannerProvider extends DefaultBannerProvider {
             .append(" _____ _            _   _ _  _        _    _        ____ _  _").append(OsUtils.LINE_SEPARATOR)
             .append("|_   _| |__   ___  | | | | || |   ___| | _(_)_ __  / ___| || |  _ __ ___   ___").append(OsUtils.LINE_SEPARATOR)
             .append("  | | | '_ \\ / _ \\ | |_| | || |_ / __| |/ / | '_ \\| |  _| || |_| '_ ` _ \\ / _ \\").append(OsUtils.LINE_SEPARATOR)
-            .append("  | | | | | |  __/ |  _  |__   _| (__|   <| | | | | |_| |__   _| | | | | |  __/").append(OsUtils.LINE_SEPARATOR)
-            .append("  |_| |_| |_|\\___| |_| |_|  |_|  \\___|_|\\_\\_|_| |_(_)___|  |_| |_| |_| |_|\\___|").append(OsUtils.LINE_SEPARATOR);
+            .append("  | | | | | |  __/ |  _  |__   _| (__|   <| | | | |" + Escape.format(Colors.YELLOWHL.fg()) + "_" + Screen.reset() + "|_| |__   _| | | | | |  __/").append(OsUtils.LINE_SEPARATOR)
+            .append("  |_| |_| |_|\\___| |_| |_|  |_|  \\___|_|\\_\\_|_| |_" + Escape.format(Colors.YELLOWHL.fg()) + "(_)" + Screen.reset() + "___|  |_| |_| |_| |_|\\___|").append(OsUtils.LINE_SEPARATOR);
         return buf;
     }
 
@@ -51,9 +53,11 @@ public class HackinGBannerProvider extends DefaultBannerProvider {
     }
 
     public String getWelcomeMessage() {
-        Thread thread = new Thread(evolve);
+        Thread thread = new Thread(advance);
         thread.start();
-        return "We are ManyFest\n\n";
+        return  "DISCLAIMER: in this game you can find fictional or existing organizations names.\n" +
+                "No one of them is involved in this game. They are just a beloved citations.\n" +
+                "Gameplay is not influenced by them, any game behaviour is part of player choices only.\n\n";
     }
 
     @Override

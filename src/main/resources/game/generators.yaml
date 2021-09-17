@@ -76,6 +76,7 @@ university:
     - Politecnico di Torino
     - Dubai IT College
     - NASA Jet Propulsion Lab
+    - SpaceX
   fake:
     - Tesladyne Academy
     - Xavier Institute
@@ -95,9 +96,32 @@ facility:
     - Government security
     - Precog Intelligence
     - APE Free
+    - E-Corp
+    - Skynet
   suffix:
     - Labs
-    - Server Factory
+    - Factory
     - Complex
     - Compound
     - Agency
+    - Res'n'Dev
+    - Bio Hazard
+crew:
+  real:
+    - Anonymous
+    - Future crew
+    - P.H.I.R.M.
+    - TeaMp0isoN
+    - Legion of Doom
+    - Autistici/Inventati
+    - Chaos Computer Club
+    - AA Project
+    - CirceX
+  fake:
+    - R/syst
+    - Swordfish
+    - Mr. Robot
+    - Fsociety
+    - Phreaks
+    - MusicalBox
+    - ManyFest
